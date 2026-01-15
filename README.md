@@ -1,73 +1,25 @@
-# Front-end test task: News application (Vue 3)
+# Decisions (structure/state/data approach)
+Structure 
+- views/ = pages (HomePage, NewsArticle)
+- components/ = UI blocks (AppHeader, AppFooter, NewsList, NewsCard, etc.)
+- stores/ = Pinia stores (news, user)
+- constants/ = mock data (MOCK_NEWS, MOCK_USER)
+- types/ = TypeScript types
+- composables/ = for this small test project, a composables/ folder can be a bit “too much”. but I still added it to show the idea: move small logic/helpers out of components (for example, mapping image file names to assets). In real projects there are usually many composables.
+- added scss and use 7-1 SASS Pattern (short form because of small test project)
 
-This template should help get you started developing with Vue 3 in Vite.
+I wanted to mention isLoading: I added it to show the moment when the data is "loading", but I didn’t have enough time to finish it.
 
-## Goal
+Data:
+-Data is loaded async from mocks (using setTimeout) to show a real flow: loading -> set data -> loading=false.
+Mock images are file names, so I added a small mapping filename imported asset. With a real API I would expect full image URLs and remove this mapping.
 
-Build a small SPA that displays news content. We want to see Vue 3 fundamentals, async data flow, sensible state
-management, and a clean structure. Questions welcome.
-
-## Time expectation
-
-- Estimation is around 3-4 hours. We don't want you to spend more than that.
-- If you run out of time, prioritize clarity and correctness over extra features.
-- Add a short **“Next steps”** section in the README (what you’d improve with more time).
-
-## Scope
-
-### Layout
-
-Create a responsive layout (mobile + desktop) that includes:
-
-- header/user info area
-- main content with news
-- footer with contacts/links
-
-### News list
-
-A list of news items where each item shows:
-
-- image
-- title
-- short description
-- author
-- publication date
-
-### News details (optional page, do if you have time)
-
-A details page accessible from the list. Has same as list items, but without description and has a news text.
-
-## [Design](https://www.figma.com/design/xH85WATOooV8cSb6bkMqlE/Test-task)
-
-Follow the design direction; implementation details are up to you (pixel-perfect not required).
-
-## Data (async)
-
-- Load news **asynchronously** using **mock data** (local JSON or similar).
-- No real API integration is required.
-
-## State management (Pinia)
-
-Use Pinia where shared state makes sense.
-
-## Code quality
-
-- Meaningful structure and component split (avoid “everything in one file”)
-- Clear naming and readable code
-- TypeScript usage preferable as we're using it in our projects
-- Avoid overengineering
-
-## UI/UX
-
-- Should work well on mobile and desktop.
-- Pay attention to typical app behavior and small details (your judgment).
-
-## Deliverables
-
-- Git repository with the solution
-- `README.md` with:
-    - brief notes on decisions (structure/state/data approach) if you want
-    - “Next steps”, if you didn't have enough time to implement everything you wanted
+# Next steps(if I had more time)
+- Finish the details page(UI and logic). if news is not loaded yet -> call loadNews() and show loader. if id is not found -> show “Not found” state.
+- Loading / empty / error states: Show loader (spinner/skeleton) for news list. Add simple empty/error UI state.
+- Tests: for stores, components and composables.
+- Small improvements: Validate route.params.id (undefined/NaN). Format dates(because we usually don't get a date in the format 14.12.2025). add pagination to the NewsList, or infinite scroll.
+- add i18n (I usually don't hardcode text in files because there are many languages in our app).
 
 ## Project Setup
 
