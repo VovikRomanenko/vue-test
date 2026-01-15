@@ -1,0 +1,48 @@
+@use "../abstracts" as *;
+
+body {
+  font-family: Lato, sans-serif;
+  font-size: $base-font-size;
+  font-weight: 400;
+  line-height: 1;
+  color: $text-color;
+  background-color: $bg-color;
+}
+
+[class*="__container"] {
+  max-width: $container-width;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .app_main {
+    flex: 1;
+  }
+}
+
+// TO_DO move to _typography.scss file
+h1 {
+  font-size: $h1-font-size;
+}
+
+// TO_DO move to _typography.scss file
+h2 {
+  font-size: $h2-font-size;
+}
+
+// TO_DO move to _animations file
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 200ms ease;
+}
+
+// TO_DO move to _animations file
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
